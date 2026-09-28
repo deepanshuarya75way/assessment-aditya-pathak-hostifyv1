@@ -8,6 +8,9 @@ import {
 } from '@/lib/checkin-token';
 import { getMaxAge } from "next/dist/server/image-optimizer";
 
+export const dynamic ='force-dynamic';
+
+
 export async function POST (request: NextRequest){
   try{
     const body =await

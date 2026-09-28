@@ -5,6 +5,8 @@ import { supabaseAdmin } from "@/lib/supabase-admin";
 import { hashCheckInToken } from "@/lib/checkin-token";
 import { error } from "console";
 
+export const dynamic ='force-dynamic';
+
 export async function POST(request:NextRequest) 
 {
   try{

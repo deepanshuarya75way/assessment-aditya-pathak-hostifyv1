@@ -2,6 +2,8 @@
 
 import { useSearchParams } from "next/navigation";
 
+export const dynamic ='force-dynamic';
+
 import { useState } from "react";
 export default function CheckInApprovalPage(){
   const searchParams = useSearchParams();

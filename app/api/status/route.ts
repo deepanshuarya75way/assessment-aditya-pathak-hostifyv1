@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 import { aw } from "vitest/dist/chunks/reporters.nr4dxCkA.js";
 
+export const dynamic ='force-dynamic';
+
 export async function  GET (request :NextRequest){
   try {
     const sessionId= request.cookies.get(
