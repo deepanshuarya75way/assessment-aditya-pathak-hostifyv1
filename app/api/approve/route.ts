@@ -20,8 +20,11 @@ export async function POST(request:NextRequest)
 
     const tokenHash =hashCheckInToken(token);
 
-    const {data:session , error} =await supabaseAdmin.from("checkin_session")
+    const {data:session , error} =await supabaseAdmin
+       .from("checkin_session")
       .select("id, team_id , status, expires_at")
+      .eq("token_hash", tokenHash)
+      .single();
 
       if(error || !session){
         return NextResponse.json({

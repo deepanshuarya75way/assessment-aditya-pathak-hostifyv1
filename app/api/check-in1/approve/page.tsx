@@ -53,12 +53,9 @@ export default function CheckInApprovalPage(){
   }
 
   return (
-
-    <main className="min-h-screen flex items-center justify-center p-6">
-      <div className="w-full max-w-md text-center">
-        {status=== "ready" &&(
-
-          <>
+        <main className="min-h-screen flex items-center justify-center p-6">
+      <div className="w-full max-w-md text-center"> {status=== "ready" &&(
+              <>
         
           <h1 className="text-2xl font-bold">
             Team check_in
@@ -73,7 +70,8 @@ export default function CheckInApprovalPage(){
           className="mt-8 px-6  py-3 rounded-lg bg-black text-white">
             Approve check_in
           </button>
-          
+            </>
+      )}
           {status==="error" && (
                     <>
                     
@@ -86,10 +84,11 @@ export default function CheckInApprovalPage(){
                       the qr code may have expired or already been used 
                     </p>
           </>
+
           
-          
-        )}  </div>
-    </main>
+        )}     </div>
+
+    </main>  
   );
 
-   }
+}

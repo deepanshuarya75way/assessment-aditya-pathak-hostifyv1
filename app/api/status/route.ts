@@ -4,7 +4,7 @@ import { supabaseAdmin } from "@/lib/supabase-admin";
 import { aw } from "vitest/dist/chunks/reporters.nr4dxCkA.js";
 
 export async function  GET (request :NextRequest){
-  try{
+  try {
     const sessionId= request.cookies.get(
       "hostify_checkin_session"
     )?.value;
@@ -28,9 +28,10 @@ export async function  GET (request :NextRequest){
       }, {status: 404 });
      }
 
-     if(data.status === " waiting " && new
-      .Date(data.expires_At).getTime() < Date.now()
-     ) {
+     if(data.status === "waiting" && 
+      new
+      Date(data.expires_At).getTime() < Date.now()
+     ) 
       await supabaseAdmin 
       .from("checkin_sessions")
       .update({status :"expired"})
@@ -42,14 +43,17 @@ export async function  GET (request :NextRequest){
         approvedBy :data.approved_by,
         approvedAt : data.approved_at,
         expiresAt: data.expires_At,
-      }); 
-    }
-      catch (error){
+      });
+     }catch(error){
       console.error(error);
 
       return NextResponse.json({
         error: "Internal server error"
-      }, {status :500});
-     }
+      }, {status :500}
+      );
+
+    }
+
   }
-}
+
+     

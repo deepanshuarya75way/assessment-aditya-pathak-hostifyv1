@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { QRCode } from "qrcode";
+import { toDataURL } from "qrcode";
 
 import { supabaseAdmin } from "@/lib/supabase-admin";
 import {
@@ -38,7 +38,7 @@ export async function POST (request: NextRequest){
         token_id: teamId,
         token_hash :tokenHash,
         status :"waiting", 
-        expires_at : expiresAt, 
+        expires_at : expires, 
        })
          .select("id , team_id, status, expires_at")
           .single();
@@ -54,8 +54,9 @@ export async function POST (request: NextRequest){
           const origin = request.nextUrl.origin;
 
           const approvalUrl ='${origin}/check-in/approve?token=${token}';
-        
-          const qrDataUrl = await QRCode.toDataURL(approvalUrl, {
+           
+          const qrDataUrl = await 
+              toDataURL(approvalUrl, {
             width:320, 
             margin:2 ,
             errorCorrectionLevel: "M",
@@ -65,7 +66,7 @@ export async function POST (request: NextRequest){
           const response =NextResponse.json({
             sessionId :data.id, 
             qrDataUrl,
-            expiresAt,
+            expires,
             status: data.status,
           })
 
